@@ -1,6 +1,7 @@
 package com.program.toystore.controller;
 
 import com.program.toystore.helpers.ResponseHandler;
+import com.program.toystore.model.DetailTransaksi;
 import com.program.toystore.model.Transaksi;
 import com.program.toystore.service.TransaksiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/transaksi")
 public class TransaksiController {
     private final TransaksiService transaksiService;
@@ -26,8 +28,8 @@ public class TransaksiController {
     }
 
     @PostMapping
-    public ResponseEntity<?> add(@RequestBody Transaksi transaksi) {
-        Transaksi dataRes = this.transaksiService.addTransaksi(transaksi);
+    public ResponseEntity<?> add(@RequestBody Transaksi transaksi, @RequestBody DetailTransaksi detailTransaksi) {
+        Transaksi dataRes = this.transaksiService.addTransaksi(transaksi, detailTransaksi);
         return ResponseHandler.success(dataRes);
     }
 

@@ -1,5 +1,8 @@
 package com.program.toystore.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -7,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString
 @Table(name = "detail_transaksi")
 public class DetailTransaksi {
     @Id
@@ -24,4 +28,9 @@ public class DetailTransaksi {
     private int qty;
 
     private double harga;
+
+    @JsonBackReference
+    public Transaksi getTransaksi(){
+        return transaksi;
+    }
 }
